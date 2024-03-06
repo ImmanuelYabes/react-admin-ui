@@ -1,50 +1,49 @@
-import BarChartBox from "../../components/barChartBox/BarChartBox";
-import BigChartBox from "../../components/bigChartBox/BigChartBox";
-import ChartBox from "../../components/chartBox/ChartBox";
-import PieChartBox from "../../components/pieCartBox/PieChartBox";
-import TopBox from "../../components/topBox/TopBox";
-import {
-  barChartBoxRevenue,
-  barChartBoxVisit,
-  chartBoxConversion,
-  chartBoxProduct,
-  chartBoxRevenue,
-  chartBoxUser,
-} from "../../data";
-import "./home.scss";
+import { Panel, IconButton } from "rsuite";
+import PlayIcon from "@rsuite/icons/legacy/Play";
+import "./home.scss"; // Import CSS file for custom styling
 
-const Home = () => {
+const divisionList = [
+  {
+    logo: "user.svg",
+    name: "Finance",
+  },
+  {
+    logo: "search.svg",
+    name: "Quality Control",
+  },
+  {
+    logo: "product.svg",
+    name: "Production",
+  },
+  {
+    logo: "profile.svg",
+    name: "Human Resource",
+  },
+];
+
+const DashboardView = () => {
   return (
-    <div className="home">
-      <div className="box box1">
-        <TopBox />
-      </div>
-      <div className="box box2">
-        <ChartBox {...chartBoxUser} />
-      </div>
-      <div className="box box3">
-        <ChartBox {...chartBoxProduct} />
-      </div>
-      <div className="box box4">
-        <PieChartBox />
-      </div>
-      <div className="box box5">
-        <ChartBox {...chartBoxConversion} />
-      </div>
-      <div className="box box6">
-        <ChartBox {...chartBoxRevenue} />
-      </div>
-      <div className="box box7">
-        <BigChartBox />
-      </div>
-      <div className="box box8">
-        <BarChartBox {...barChartBoxVisit} />
-      </div>
-      <div className="box box9">
-        <BarChartBox {...barChartBoxRevenue} />
+    <div className="dashboard-container">
+      <h2 className="dashboard-title">List Divisi</h2>
+      <div className="dashboard-items">
+        {divisionList.map((division, index) => (
+          <Panel className="dashboard-panel" bordered key={index}>
+            <div className="dashboard-content">
+              <p className="dashboard-name">{division.name}</p>
+              <IconButton
+                icon={<PlayIcon />}
+                appearance="primary"
+                color="violet"
+                placement="right"
+              >
+                Details
+              </IconButton>
+            </div>
+          </Panel>
+        ))}
       </div>
     </div>
   );
 };
 
-export default Home;
+export default DashboardView;

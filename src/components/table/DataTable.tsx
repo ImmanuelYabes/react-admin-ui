@@ -1,10 +1,7 @@
-import {
-  DataGrid,
-  GridColDef,
-  GridToolbar,
-} from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import "./dataTable.scss";
 import { Link } from "react-router-dom";
+
 // import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 type Props = {
@@ -14,7 +11,6 @@ type Props = {
 };
 
 const DataTable = (props: Props) => {
-
   // TEST THE API
 
   // const queryClient = useQueryClient();
@@ -42,10 +38,10 @@ const DataTable = (props: Props) => {
       return (
         <div className="action">
           <Link to={`/${props.slug}/${params.row.id}`}>
-            <img src="/view.svg" alt="" />
+            <img src="/details.svg" alt="" />
           </Link>
           <div className="delete" onClick={() => handleDelete(params.row.id)}>
-            <img src="/delete.svg" alt="" />
+            <img src="/ViewsIcon.svg" alt="" />
           </div>
         </div>
       );
@@ -55,6 +51,11 @@ const DataTable = (props: Props) => {
   return (
     <div className="dataTable">
       <DataGrid
+        sx={{
+          "@media print": {
+            ".MuiDataGrid-main": { color: "rgba(0, 0, 0, 0.87)" },
+          },
+        }}
         className="dataGrid"
         rows={props.rows}
         columns={[...props.columns, actionColumn]}
